@@ -1,96 +1,39 @@
-var num1, num2,sign,total;
-function checkHoisting(num) {
-  var variable = document.getElementById("Screen");
-  var history = document.getElementById('history');
+const buttons = document.getElementsByClassName("NumberButton");
+const currentScreen=document.getElementById("screen");
+const pastScreen=document.getElementById("history");
 
-  if(num=='c'){
-    num1 = null;
-    num2=null;
-    sign = null;
-    total=null;
-    variable.innerText='';
-    history.innerText='';
-    return;
-  }
-    switch(num){
-      case('+'):
-      if(variable.innerText.length==0)
-        {
-            return;
-        }
-        sign = num;
-        num1 = +variable.innerText;
-        variable.innerText="";
-        history.innerText=num1+sign;
-  
-      
-      return;
-      case('-'):
-      if(variable.innerText.length==0)
-        {
-            return;
-        }
-      sign = num;
-      num1 = +variable.innerText;
-      variable.innerText="";
-      history.innerText=num1+sign;
+//buttons.forEach(index =>{buttons[index].addEventListener('click',()=>handleButtonClicked)});
 
-    
-    return;
-    case('*'):
-    if(variable.innerText.length==0)
-      {
+for(let index = 0; index<buttons.length;index++){
+  buttons[index].addEventListener('click',()=>handleButtonClicked(index));
+}
+
+
+function handleButtonClicked(index){
+      //Clicked Button
+    let buttonValue =  buttons[index].textContent;
+    if(buttonValue =='C') {currentScreen.innerText ="";   pastScreen.innerText=""; return;}
+     else if(isNaN(buttonValue)){
+        
+        if(currentScreen.innerText ==''){
+          alert("Please Select Number First");
           return;
-      }
-    sign = sign;
-    num1 = +variable.innerText;
-    variable.innerText="";
-    history.innerText=num1+sign;
-
-  
-  return;
-  case('/'):
-  if(variable.innerText.length==0)
-    {
-        return;
-    }
-  sign = num;
-  num1 = +variable.innerText;
-  variable.innerText="";
-  history.innerText=num1+sign;
-
-
-return;
-      case('='):
-      if(variable.innerText.length==0)
-        {
-            return;
         }
-      if(num1!=null){
-        num2= +variable.innerText;
-    
-      switch(sign){
-        case('+'):
-        total = num1 +num2;
-        break;
-        case('-'):   total = num1 -num2;
-        break;
-        case('*'):   total = num1 *num2;
-        break;
-        case('/'):   total = num1 /num2;
-        break;
-      }
-      if(num1!=null && num2!=null){
-          variable.innerText = total;
-          history.innerText = "";
+
+      switch(buttonValue){
+        case '+':
+          break;
+        case '-':
+          break;
+        case '*':
+          break;
+        case '/':
+          break;
+
       }
       return;
-    } 
-  
-  }
+     }
+    currentScreen.innerText+=Number(buttonValue);
 
-    variable.textContent+=num;
-  
     
-
-  }
+}
