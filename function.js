@@ -2,8 +2,6 @@ const buttons = document.getElementsByClassName("NumberButton");
 const currentScreen=document.getElementById("screen");
 const pastScreen=document.getElementById("history");
 
-//buttons.forEach(index =>{buttons[index].addEventListener('click',()=>handleButtonClicked)});
-
 for(let index = 0; index<buttons.length;index++){
   buttons[index].addEventListener('click',()=>handleButtonClicked(index));
 }
@@ -32,12 +30,7 @@ function handleButtonClicked(index){
           return;
         }
         clickedSymbol(buttonValue);
- 
 
-     
-  
-
-    
 }
 function clickedSymbol(buttonValue){
   pastScreen.innerText+= currentScreen.textContent+buttonValue;
