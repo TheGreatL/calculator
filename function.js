@@ -12,28 +12,34 @@ for(let index = 0; index<buttons.length;index++){
 function handleButtonClicked(index){
       //Clicked Button
     let buttonValue =  buttons[index].textContent;
+
     if(buttonValue =='C') {currentScreen.innerText ="";   pastScreen.innerText=""; return;}
-     else if(isNaN(buttonValue)){
-        
-        if(currentScreen.innerText ==''){
+
+    if(!isNaN(buttonValue)){
+      //If Number
+      currentScreen.innerText+=Number(buttonValue);
+      return;
+    }
+    if(currentScreen.innerText ==''){
           alert("Please Select Number First");
           return;
         }
+ 
+        if(buttonValue=='='){
+           if(pastScreen.innerText=='') alert("Complete the task first");
+          currentScreen.innerText= eval(pastScreen.innerText+currentScreen.innerText);
+          pastScreen.innerText="";
+          return;
+        }
+        clickedSymbol(buttonValue);
+ 
 
-      switch(buttonValue){
-        case '+':
-          break;
-        case '-':
-          break;
-        case '*':
-          break;
-        case '/':
-          break;
-
-      }
-      return;
-     }
-    currentScreen.innerText+=Number(buttonValue);
+     
+  
 
     
+}
+function clickedSymbol(buttonValue){
+  pastScreen.innerText+= currentScreen.textContent+buttonValue;
+  currentScreen.textContent="";
 }
